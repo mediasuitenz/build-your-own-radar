@@ -4,7 +4,8 @@ log_format logger-json escape=json '{"source": "nginx", "time": $msec, "resp_bod
 
 server {
   access_log /var/log/nginx/access.log logger-json;
-  listen 80;
+  listen 8080;
+  listen [::]:8080;
   location / {
     root /opt/build-your-own-radar;
     index index.html;

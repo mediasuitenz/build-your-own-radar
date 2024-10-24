@@ -1,0 +1,16 @@
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: {{ include "techradar.fullname" . }}
+  labels:
+    {{- include "techradar.labels" . | nindent 4 }}
+spec:
+  entryPoints:
+  - websecure
+  routes:
+  - kind: Rule
+    match: Host(`techradar.msapp.co.nz`)
+    services:
+    - name: {{ include "techradar.fullname" . }}
+      port: {{ .Values.service.port }}
